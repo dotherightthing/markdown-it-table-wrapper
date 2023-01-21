@@ -1,6 +1,6 @@
 /**
  * @file index.js
- * @summary markdown-it-vuepress-table, based on markdown-it-gallery
+ * @summary markdown-it-table-wrapper
  * @description A markdown-it plugin for wrapping a table in a custom Vue component.
  * @see {@link https://github.com/markdown-it/markdown-it/issues/834#issue-1087866549} - new TokenConstructor
  * @see {@link https://github.com/markdown-it/markdown-it/issues/834#issuecomment-1001055989} - md.core.ruler.push
@@ -8,13 +8,14 @@
  * @see {@link https://github.com/markdown-it/markdown-it/blob/e843acc9edad115cbf8cf85e676443f01658be08/dist/markdown-it.js} - new state.Token
  */
 
-class VueTablePlugin {
+class TableWrapperPlugin {
     constructor(md, options) {
         this.md = md;
         this.options = Object.assign({
           captionFromPrecedingHeadingLevel: 'h3', // use a heading above the table as the caption
           captionLinerClass: 'caption-liner',
-          vueTableTag: 'TableWrapper',
+          tableWrapperClass: '',
+          tableWrapperTag: 'TableWrapper',
         }, options);
 
         // Push new rule to the end of core chain, when all parser jobs done, but before renderer
@@ -25,7 +26,8 @@ class VueTablePlugin {
         const {
             captionFromPrecedingHeadingLevel,
             captionLinerClass,
-            vueTableTag
+            tableWrapperClass,
+            tableWrapperTag
         } = this.options;
 
         const tokens = state.tokens;
@@ -71,11 +73,11 @@ class VueTablePlugin {
             const vueTokenOpen = new state.Token('html_block', '', 0); // tag, type, nesting
             const vueTokenClose = new state.Token('html_block', '', 0); // tag, type, nesting
 
-            vueTokenOpen.content = `<${vueTableTag}>`;
+            vueTokenOpen.content = `<${tableWrapperTag} class="${tableWrapperClass}">`;
             insertPosition = state.tokens.indexOf(openToken);
             state.tokens.splice(insertPosition, 0, vueTokenOpen);
 
-            vueTokenClose.content = `</${vueTableTag}>`;
+            vueTokenClose.content = `</${tableWrapperTag}>`;
             insertPosition = state.tokens.indexOf(closeToken) + 1;
             state.tokens.splice(insertPosition, 0, vueTokenClose);
 
@@ -101,4 +103,4 @@ class VueTablePlugin {
     }
 }
 
-module.exports = (md, options = {}) => new VueTablePlugin(md, options);
+module.exports = (md, options = {}) => new TableWrapperPlugin(md, options);

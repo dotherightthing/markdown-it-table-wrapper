@@ -1,10 +1,10 @@
-# markdown-it-vuepress-table
+# markdown-it-table-wrapper
 
 A [markdown-it](https://github.com/markdown-it/markdown-it) plugin for wrapping a table with a custom Vue component. For use with Vuepress.
 
 I find this preferable to using a Vue component directly in the Vuepress markdown file. Tables are core content and should be visible when editing content in a pluggable IDE without requiring Vuepress for compilation.
 
-Based on <https://github.com/dotherightthing/markdown-it-vuepress-table>.
+Based on <https://github.com/dotherightthing/markdown-it-table-wrapper>.
 
 ## Usage
 
@@ -13,8 +13,9 @@ Based on <https://github.com/dotherightthing/markdown-it-vuepress-table>.
 | Option                           | Type    | Default         | Description                                                                                   |
 |----------------------------------|---------|-----------------|-----------------------------------------------------------------------------------------------|
 | captionFromPrecedingHeadingLevel | String  | "h3"            | Reuse the caption from the preceding sibling heading element (rather than providing a string) |
-| captionLinerClass                | String  | "caption-liner" | CSS class to apply to the injected caption element                                            |
-| vueTableTag                      | String  | "TableWrapper"  | Name of the Vue component (authored separately)                                               |
+| captionLinerClass                | String  | "caption-liner" | CSS class hook for styling the table caption                                                  |
+| tableWrapperClass                | String  | ""              | CSS class hook for styling the table wrapper / table                                          |
+| tableWrapperTag                  | String  | "TableWrapper"  | Tag name (or name of the Vue component, authored separately)                                  |
 
 ### Example
 
@@ -24,26 +25,59 @@ Based on <https://github.com/dotherightthing/markdown-it-vuepress-table>.
 module.exports = {
   markdown: {
     extendMarkdown: md => {
-      md.use(require('markdown-it-vuepress-table'))
+      md.use(require('markdown-it-table-wrapper'), {
+        captionFromPrecedingHeadingLevel: 'h3',
+        captionLinerClass: 'caption-liner',
+        tableWrapperClass: '',
+        tableWrapperTag: 'TableWrapper',
+      })
     }
   }
 }
 ```
 
 ```vue
-// .vuepress/components/TABLE.vue (simplified example)
+// .vuepress/components/TableWrapper.vue (simplified example)
 
-// TODO
+<template>
+  <div class="table-wrapper">
+    <slot/>
+  </div>
+</template>
 ```
 
 #### Input markdown
 
 ```md
-TODO
+### Animals I've Known
+
+| Animal | Color  | Name      |
+|--------|--------|-----------|
+| Cat    | Ginger | Gingernut |
 ```
 
 #### Output HTML
 
 ```html
-<!-- TODO -->
+<div class="table-wrapper">
+  <table>
+    <caption>
+      <span class="caption-liner">Animals I've Known</span>
+    </caption>
+    <thead>
+      <tr>
+        <th>Animal</th>
+        <th>Color</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cat</td>
+        <td>Ginger</td>
+        <td>Gingernut</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 ```

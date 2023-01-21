@@ -1,19 +1,19 @@
 {
-  "name": "markdown-it-vuepress-table",
+  "name": "markdown-it-table-wrapper",
   "version": "1.0.0",
-  "description": "A markdown-it plugin for wrapping a table with a custom Vue component.",
+  "description": "A markdown-it plugin for wrapping a table with a tag or custom Vue component.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dotherightthing/markdown-it-vuepress-table.git"
+    "url": "git+https://github.com/dotherightthing/markdown-it-table-wrapper.git"
   },
   "author": "dev@dotherightthing.co.nz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dotherightthing/markdown-it-vuepress-table/issues"
+    "url": "https://github.com/dotherightthing/markdown-it-table-wrapper/issues"
   },
-  "homepage": "https://github.com/dotherightthing/markdown-it-vuepress-table#readme"
+  "homepage": "https://github.com/dotherightthing/markdown-it-table-wrapper#readme"
 }
