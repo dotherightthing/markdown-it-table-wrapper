@@ -44,6 +44,12 @@ module.exports = {
     <slot/>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'TableWrapper',
+}
+</script>
 ```
 
 #### Input markdown
