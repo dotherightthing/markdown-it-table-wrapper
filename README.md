@@ -10,12 +10,12 @@ Based on <https://github.com/dotherightthing/markdown-it-table-wrapper>.
 
 ### Options
 
-| Option                           | Type    | Default         | Description                                                                                   |
-|----------------------------------|---------|-----------------|-----------------------------------------------------------------------------------------------|
-| captionFromPrecedingHeadingLevel | String  | "h3"            | Reuse the caption from the preceding sibling heading element (rather than providing a string) |
-| captionLinerClass                | String  | "caption-liner" | CSS class hook for styling the table caption                                                  |
-| tableWrapperClass                | String  | ""              | CSS class hook for styling the table wrapper / table                                          |
-| tableWrapperTag                  | String  | "TableWrapper"  | Tag name (or name of the Vue component, authored separately)                                  |
+| Option                           | Type    | Default         | Description                                                    |
+|----------------------------------|---------|-----------------|----------------------------------------------------------------|
+| captionFromPrecedingSiblingTag   | String  | "h3"            | Transform the preceding sibling element into the table caption |
+| captionLinerClass                | String  | "caption-liner" | CSS class hook for styling the table caption                   |
+| tableWrapperClass                | String  | ""              | CSS class hook for styling the table wrapper / table           |
+| tableWrapperTag                  | String  | "TableWrapper"  | Tag name (or name of the Vue component, authored separately)   |
 
 ### Example
 
@@ -26,7 +26,7 @@ module.exports = {
   markdown: {
     extendMarkdown: md => {
       md.use(require('markdown-it-table-wrapper'), {
-        captionFromPrecedingHeadingLevel: 'h3',
+        captionFromPrecedingSiblingTag: 'h3',
         captionLinerClass: 'caption-liner',
         tableWrapperClass: '',
         tableWrapperTag: 'TableWrapper',

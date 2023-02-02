@@ -12,7 +12,7 @@ class TableWrapperPlugin {
     constructor(md, options) {
         this.md = md;
         this.options = Object.assign({
-          captionFromPrecedingHeadingLevel: 'h3', // use a heading above the table as the caption
+          captionFromPrecedingSiblingTag: 'h3',
           captionLinerClass: 'caption-liner',
           tableWrapperClass: '',
           tableWrapperTag: 'TableWrapper',
@@ -24,7 +24,7 @@ class TableWrapperPlugin {
 
     table(state) {
         const {
-            captionFromPrecedingHeadingLevel,
+            captionFromPrecedingSiblingTag,
             captionLinerClass,
             tableWrapperClass,
             tableWrapperTag
@@ -41,11 +41,11 @@ class TableWrapperPlugin {
                 table = {};
                 table.openToken = token;
 
-                if (captionFromPrecedingHeadingLevel) {
-                    if ((tokens[i - 3].type === 'heading_open') && (tokens[i - 3].tag === captionFromPrecedingHeadingLevel)) {
-                        table.headingOpenToken = tokens[i - 3];
-                        table.headingContentToken = tokens[i - 2];
-                        table.headingCloseToken = tokens[i - 1];
+                if (captionFromPrecedingSiblingTag) {
+                    if ((tokens[i - 1].tag === captionFromPrecedingSiblingTag)) {
+                        table.captionOpenToken = tokens[i - 3];
+                        table.captionContentToken = tokens[i - 2];
+                        table.captionCloseToken = tokens[i - 1];
                     }
                 }
             } else if (token.type === 'table_close') {
@@ -57,14 +57,14 @@ class TableWrapperPlugin {
 
         tables.forEach(table => {
             const {
-                headingOpenToken,
-                headingContentToken,
-                headingCloseToken,
+                captionOpenToken,
+                captionContentToken,
+                captionCloseToken,
                 openToken,
                 closeToken
             } = table;
 
-            if (!headingOpenToken || !headingContentToken || !headingCloseToken || !openToken || !closeToken) {
+            if (!captionOpenToken || !captionContentToken || !captionCloseToken || !openToken || !closeToken) {
                 return;
             }
 
@@ -81,20 +81,20 @@ class TableWrapperPlugin {
             insertPosition = state.tokens.indexOf(closeToken) + 1;
             state.tokens.splice(insertPosition, 0, vueTokenClose);
 
-            const caption = headingContentToken.content;
+            const caption = captionContentToken.content;
             const captionToken = new state.Token('html_block', '', 1); // tag, type, nesting
 
             captionToken.content = `<caption><span class="${captionLinerClass}">${caption}</span></caption>`;
             insertPosition = state.tokens.indexOf(openToken) + 1;
             state.tokens.splice(insertPosition, 0, captionToken);
 
-            // headingOpenToken.hidden = true;
-            // headingContentToken.hidden = true;
-            // headingCloseToken.hidden = true;
-            headingOpenToken.attrSet('hidden', 'hidden');
+            // captionOpenToken.hidden = true;
+            // captionContentToken.hidden = true;
+            // captionCloseToken.hidden = true;
+            captionOpenToken.attrSet('hidden', 'hidden');
 
-            // if (headingContentToken.children.length) {
-                // headingContentToken.children.forEach(child => {
+            // if (captionContentToken.children.length) {
+                // captionContentToken.children.forEach(child => {
                     // child.content = '';
                     // child.hidden = true;
                 // });
