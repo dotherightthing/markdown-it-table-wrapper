@@ -12,7 +12,7 @@ class TableWrapperPlugin {
     constructor(md, options) {
         this.md = md;
         this.options = Object.assign({
-          captionFromPrecedingSiblingTag: 'h3',
+          captionFromPrecedingSiblingTag: 'p',
           captionLinerClass: 'caption-liner',
           tableWrapperClass: '',
           tableWrapperTag: 'TableWrapper',
@@ -42,7 +42,7 @@ class TableWrapperPlugin {
                 table.openToken = token;
 
                 if (captionFromPrecedingSiblingTag) {
-                    if ((tokens[i - 1].tag === captionFromPrecedingSiblingTag)) {
+                    if (tokens[i - 1] && (tokens[i - 1].tag === captionFromPrecedingSiblingTag)) {
                         table.captionOpenToken = tokens[i - 3];
                         table.captionContentToken = tokens[i - 2];
                         table.captionCloseToken = tokens[i - 1];
@@ -64,7 +64,7 @@ class TableWrapperPlugin {
                 closeToken
             } = table;
 
-            if (!captionOpenToken || !captionContentToken || !captionCloseToken || !openToken || !closeToken) {
+            if (!openToken || !closeToken) { // !captionOpenToken || !captionContentToken || !captionCloseToken || 
                 return;
             }
 
@@ -81,24 +81,26 @@ class TableWrapperPlugin {
             insertPosition = state.tokens.indexOf(closeToken) + 1;
             state.tokens.splice(insertPosition, 0, vueTokenClose);
 
-            const caption = captionContentToken.content;
-            const captionToken = new state.Token('html_block', '', 1); // tag, type, nesting
+            if (captionOpenToken) {
+                const caption = captionContentToken.content;
+                const captionToken = new state.Token('html_block', '', 1); // tag, type, nesting
 
-            captionToken.content = `<caption><span class="${captionLinerClass}">${caption}</span></caption>`;
-            insertPosition = state.tokens.indexOf(openToken) + 1;
-            state.tokens.splice(insertPosition, 0, captionToken);
+                captionToken.content = `<caption><span class="${captionLinerClass}">${caption}</span></caption>`;
+                insertPosition = state.tokens.indexOf(openToken) + 1;
+                state.tokens.splice(insertPosition, 0, captionToken);
 
-            // captionOpenToken.hidden = true;
-            // captionContentToken.hidden = true;
-            // captionCloseToken.hidden = true;
-            captionOpenToken.attrSet('hidden', 'hidden');
+                // captionOpenToken.hidden = true;
+                // captionContentToken.hidden = true;
+                // captionCloseToken.hidden = true;
+                captionOpenToken.attrSet('hidden', 'hidden');
 
-            // if (captionContentToken.children.length) {
-                // captionContentToken.children.forEach(child => {
-                    // child.content = '';
-                    // child.hidden = true;
-                // });
-            // }
+                // if (captionContentToken.children.length) {
+                    // captionContentToken.children.forEach(child => {
+                        // child.content = '';
+                        // child.hidden = true;
+                    // });
+                // }
+            }
         });
     }
 }

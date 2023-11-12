@@ -4,7 +4,7 @@
   "description": "A markdown-it plugin for wrapping a table with a tag or custom Vue component.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/*.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/dotherightthing/markdown-it-table-wrapper/issues"
   },
-  "homepage": "https://github.com/dotherightthing/markdown-it-table-wrapper#readme"
+  "homepage": "https://github.com/dotherightthing/markdown-it-table-wrapper#readme",
+  "devDependencies": {
+    "markdown-it": "^13.0.2",
+    "markdown-it-testgen": "^0.1.6",
+    "mocha": "^10.2.0"
+  }
 }

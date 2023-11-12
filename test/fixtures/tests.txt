@@ -1,0 +1,150 @@
+Table with preceding P caption
+.
+Van tour itinerary
+| Day | Location | Activity |
+| --- | --- | --- |
+| One | Kharkhorin & Erdene Zuu monastery | Ruins |
+| Two | ? | Waterfall & horse riding |
+| Three | Tövkhön temple | Hiking and horse riding |
+| Four | Ugii Lake | Ruins |
+| Five | Return to Ulaanbaatar | \- |
+.
+<p hidden="hidden">Van tour itinerary</p>
+<TableWrapper class=""><table>
+<caption><span class="caption-liner">Van tour itinerary</span></caption><thead>
+<tr>
+<th>Day</th>
+<th>Location</th>
+<th>Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One</td>
+<td>Kharkhorin &amp; Erdene Zuu monastery</td>
+<td>Ruins</td>
+</tr>
+<tr>
+<td>Two</td>
+<td>?</td>
+<td>Waterfall &amp; horse riding</td>
+</tr>
+<tr>
+<td>Three</td>
+<td>Tövkhön temple</td>
+<td>Hiking and horse riding</td>
+</tr>
+<tr>
+<td>Four</td>
+<td>Ugii Lake</td>
+<td>Ruins</td>
+</tr>
+<tr>
+<td>Five</td>
+<td>Return to Ulaanbaatar</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</TableWrapper>
+.
+
+Table without preceding caption
+.
+| Day | Location | Activity |
+| --- | --- | --- |
+| One | Kharkhorin & Erdene Zuu monastery | Ruins |
+| Two | ? | Waterfall & horse riding |
+| Three | Tövkhön temple | Hiking and horse riding |
+| Four | Ugii Lake | Ruins |
+| Five | Return to Ulaanbaatar | \- |
+.
+<TableWrapper class=""><table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Location</th>
+<th>Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One</td>
+<td>Kharkhorin &amp; Erdene Zuu monastery</td>
+<td>Ruins</td>
+</tr>
+<tr>
+<td>Two</td>
+<td>?</td>
+<td>Waterfall &amp; horse riding</td>
+</tr>
+<tr>
+<td>Three</td>
+<td>Tövkhön temple</td>
+<td>Hiking and horse riding</td>
+</tr>
+<tr>
+<td>Four</td>
+<td>Ugii Lake</td>
+<td>Ruins</td>
+</tr>
+<tr>
+<td>Five</td>
+<td>Return to Ulaanbaatar</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</TableWrapper>
+.
+
+Table with preceding H3 which is not identified as a caption
+.
+### Van tour itinerary
+| Day | Location | Activity |
+| --- | --- | --- |
+| One | Kharkhorin & Erdene Zuu monastery | Ruins |
+| Two | ? | Waterfall & horse riding |
+| Three | Tövkhön temple | Hiking and horse riding |
+| Four | Ugii Lake | Ruins |
+| Five | Return to Ulaanbaatar | \- |
+.
+<h3>Van tour itinerary</h3>
+<TableWrapper class=""><table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Location</th>
+<th>Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One</td>
+<td>Kharkhorin &amp; Erdene Zuu monastery</td>
+<td>Ruins</td>
+</tr>
+<tr>
+<td>Two</td>
+<td>?</td>
+<td>Waterfall &amp; horse riding</td>
+</tr>
+<tr>
+<td>Three</td>
+<td>Tövkhön temple</td>
+<td>Hiking and horse riding</td>
+</tr>
+<tr>
+<td>Four</td>
+<td>Ugii Lake</td>
+<td>Ruins</td>
+</tr>
+<tr>
+<td>Five</td>
+<td>Return to Ulaanbaatar</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</TableWrapper>
+.
