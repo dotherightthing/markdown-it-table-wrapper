@@ -4,8 +4,6 @@ A [markdown-it](https://github.com/markdown-it/markdown-it) plugin for wrapping 
 
 I find this preferable to using a Vue component directly in the Vuepress markdown file. Tables are core content and should be visible when editing content in a pluggable IDE without requiring Vuepress for compilation.
 
-Based on <https://github.com/dotherightthing/markdown-it-table-wrapper>.
-
 ## Usage
 
 <a name="TableWrapperPlugin"></a>
