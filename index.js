@@ -8,6 +8,17 @@
  * @see {@link https://github.com/markdown-it/markdown-it/blob/e843acc9edad115cbf8cf85e676443f01658be08/dist/markdown-it.js} - new state.Token
  */
 
+/**
+ * @class TableWrapperPlugin
+ * @summary Wraps table in a Vue component and injects an HTML caption
+ * @param {object} options - Instance options
+ * @param {string} [options.captionFromPrecedingSiblingTag=p] - Tag of a preceding element to pull caption text from
+ * @param {string} [options.captionLinerClass=caption-liner] - CSS class hook for styling the table caption
+ * @param {string} [options.tableWrapperClass=] - CSS class hook for styling the table wrapper
+ * @param {string} [options.tableWrapperTag=TableWrapper] - Tag name for the table wrapper (or name of the Vue component, authored separately)
+ * @public
+ */
+
 class TableWrapperPlugin {
     constructor(md, options) {
         this.md = md;
