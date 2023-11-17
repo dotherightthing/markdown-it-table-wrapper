@@ -2,7 +2,7 @@
 
 A [markdown-it](https://github.com/markdown-it/markdown-it) plugin for wrapping a table with a custom Vue component. For use with Vuepress.
 
-I find this preferable to using a Vue component / [named Markdown slot](https://vuepress.vuejs.org/guide/markdown-slot.html) directly in the Vuepress markdown file.
+I find this preferable to using a Vue component / [named Markdown slot](https://vuepress.vuejs.org/guide/markdown-slot.html) directly in the Vuepress markdown file, as the table can be reformatted prior to rendering by SSR.
 
 ## Usage
 
